@@ -19,7 +19,6 @@
             rel="stylesheet"
         />
         <link rel="stylesheet" href="style.css" />
-        <!-- or better for modern browsers: -->
         <link rel="icon" href="icon.svg" type="image/svg+xml" />
         <link rel="icon" href="icon16.png" sizes="16x16" type="image/png" />
     </head>
@@ -44,13 +43,6 @@
                     <a class="nav-link" href="terms.html">Terms</a>
                 </div>
                 <div style="display: flex; gap: 8px; align-items: center">
-                    <!--<button
-                        class="theme-toggle"
-                        id="theme-toggle"
-                        title="Toggle theme"
-                    >
-                        🌙
-                    </button>-->
                     <a
                         class="nav-cta"
                         href="https://chrome.google.com/webstore"
@@ -58,7 +50,91 @@
                         rel="noopener"
                         >Add to Chrome</a
                     >
+                    <button
+                        class="nav-hamburger"
+                        id="navHamburger"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                        aria-controls="mobileNav"
+                    >
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                    </button>
                 </div>
+            </div>
+        </nav>
+
+        <!-- ═══ MOBILE NAV OVERLAY ═══ -->
+        <div
+            class="mobile-nav-backdrop"
+            id="mobileNavBackdrop"
+            aria-hidden="true"
+        ></div>
+        <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <div class="mobile-nav-header">
+                <a
+                    class="nav-brand"
+                    href="index.html"
+                    style="text-decoration: none"
+                >
+                    <div class="nav-brand-icon">
+                        <img
+                            src="icon128.png"
+                            alt="Chat Manager logo"
+                            width="28px"
+                            height="28px"
+                        />
+                    </div>
+                    <span class="nav-brand-name">Chat Manager</span>
+                </a>
+                <button
+                    class="mobile-nav-close"
+                    id="mobileNavClose"
+                    aria-label="Close menu"
+                >
+                    <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 18 18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                    >
+                        <line x1="3" y1="3" x2="15" y2="15" />
+                        <line x1="15" y1="3" x2="3" y2="15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-nav-links">
+                <a class="mobile-nav-link" href="index.html#features">
+                    <span class="mobile-nav-link-icon">✦</span> Features
+                </a>
+                <a class="mobile-nav-link" href="index.html#pricing">
+                    <span class="mobile-nav-link-icon">✦</span> Pricing
+                </a>
+                <a class="mobile-nav-link" href="terms.html">
+                    <span class="mobile-nav-link-icon">✦</span> Terms
+                </a>
+                <a class="mobile-nav-link" href="privacy.html">
+                    <span class="mobile-nav-link-icon">✦</span> Privacy
+                </a>
+            </div>
+            <div class="mobile-nav-footer">
+                <a
+                    class="btn btn-primary"
+                    href="https://chrome.google.com/webstore"
+                    target="_blank"
+                    rel="noopener"
+                    style="width: 100%; justify-content: center"
+                >
+                    Add to Chrome — Free
+                </a>
+                <p class="mobile-nav-disclaimer">
+                    No chat content stored · Works in all Chromium-based
+                    browsers
+                </p>
             </div>
         </nav>
 
@@ -423,14 +499,7 @@
                         Email:
                         <a href="mailto:techosiris69@gmail.com"
                             >techosiris69@gmail.com</a
-                        ><br />
-                        <!--GitHub:
-                        <a
-                            href="https://github.com/uy-scuti100/ccm"
-                            target="_blank"
-                            rel="noopener"
-                            >github.com/uy-scuti100/ccm</a
-                        >-->
+                        >
                     </p>
                 </div>
             </div>
@@ -458,6 +527,7 @@
         </footer>
 
         <script>
+            // ─── THEME ───────────────────────────────────────
             const themes = ["auto", "light", "dark"];
             const icons = { auto: "🌙", light: "☀️", dark: "🌙" };
             let idx = 0;
@@ -479,6 +549,41 @@
                 apply();
             });
             load();
+
+            // ─── MOBILE NAV ──────────────────────────────────
+            (function () {
+                const hamburger = document.getElementById("navHamburger");
+                const closeBtn = document.getElementById("mobileNavClose");
+                const mobileNav = document.getElementById("mobileNav");
+                const backdrop = document.getElementById("mobileNavBackdrop");
+
+                function openNav() {
+                    mobileNav.classList.add("is-open");
+                    backdrop.classList.add("is-visible");
+                    document.body.classList.add("nav-open");
+                    hamburger.setAttribute("aria-expanded", "true");
+                    mobileNav.setAttribute("aria-hidden", "false");
+                    backdrop.setAttribute("aria-hidden", "false");
+                }
+                function closeNav() {
+                    mobileNav.classList.remove("is-open");
+                    backdrop.classList.remove("is-visible");
+                    document.body.classList.remove("nav-open");
+                    hamburger.setAttribute("aria-expanded", "false");
+                    mobileNav.setAttribute("aria-hidden", "true");
+                    backdrop.setAttribute("aria-hidden", "true");
+                }
+
+                hamburger?.addEventListener("click", openNav);
+                closeBtn?.addEventListener("click", closeNav);
+                backdrop?.addEventListener("click", closeNav);
+                mobileNav
+                    ?.querySelectorAll(".mobile-nav-link")
+                    .forEach((l) => l.addEventListener("click", closeNav));
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") closeNav();
+                });
+            })();
         </script>
     </body>
 </html>
