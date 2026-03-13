@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+            Conversation Manager for Claude — Folders, Tags & Prompt Library
+        </title>
+        <meta
+            name="description"
+            content="Organize your Claude conversations with folders, tags, starred chats, a saved prompt library, and usage stats. A free Chrome extension for claude.ai power users."
+        />
+        <meta property="og:title" content="Conversation Manager for Claude" />
+        <meta
+            property="og:description"
+            content="Folders, tags, prompts, and stats for claude.ai. Free Chrome extension."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://uy-scuti100.github.io/ccm/" />
+        <link rel="canonical" href="https://uy-scuti100.github.io/ccm/" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="icon" href="assets/icon16.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- ═══ NAV ═══ -->
+        <nav class="site-nav">
+            <div class="nav-inner">
+                <a class="nav-brand" href="/">
+                    <div class="nav-brand-icon">
+                        <svg
+                            viewBox="0 0 28 28"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect
+                                width="28"
+                                height="28"
+                                rx="7"
+                                fill="var(--surface2)"
+                            />
+                            <path
+                                d="M14 4L15.8 10.2L22 10L17.2 13.8L19 20L14 16.5L9 20L10.8 13.8L6 10L12.2 10.2Z"
+                                fill="#d97757"
+                            />
+                        </svg>
+                    </div>
+                    <span class="nav-brand-name">Conversation Manager</span>
+                </a>
+                <div class="nav-links">
+                    <a class="nav-link" href="#features">Features</a>
+                    <a class="nav-link" href="#how-it-works">How it works</a>
+                    <a class="nav-link" href="#pricing">Pricing</a>
+                    <a class="nav-link" href="#faq">FAQ</a>
+                    <a class="nav-link" href="privacy.html">Privacy</a>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center">
+                    <!--<button
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        title="Toggle theme"
+                    >
+                        🌙
+                    </button>-->
+                    <a
+                        class="nav-cta"
+                        href="https://chrome.google.com/webstore"
+                        target="_blank"
+                        rel="noopener"
+                        >Add to Chrome
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">✦ Chrome Extension · claude.ai</div>
+                <h1 class="hero-title">
+                    Claude deserves a<br /><em>better sidebar</em>
+                </h1>
+                <p class="hero-sub">
+                    Conversation Manager adds folders, tags, a saved prompt
+                    library, usage stats, and export to claude.ai — without
+                    touching a single line of Claude's code.
+                </p>
+                <div class="hero-actions">
+                    <a
+                        class="btn btn-primary"
+                        href="https://chrome.google.com/webstore"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <circle cx="8" cy="8" r="6" />
+                            <path d="M8 5v6M5 8l3 3 3-3" />
+                        </svg>
+                        Add to Chrome — Free
+                    </a>
+                    <a class="btn btn-secondary" href="#features"
+                        >See all features ↓</a
+                    >
+                </div>
+
+                <!-- Browser mockup -->
+                <div class="browser-mockup">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-url">claude.ai/chat</span>
+                    </div>
+                    <div class="browser-content" style="padding: 0">
+                        <img
+                            class="browser-screenshot"
+                            src="assets/hero-image.png"
+                            alt="Conversation Manager extension showing folders, tags and search"
+                            style="
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                display: block;
+                            "
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SOCIAL PROOF ═══ -->
+        <div
+            style="
+                background: var(--surface);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+                padding: 20px 0;
+            "
+        >
+            <div class="container">
+                <div
+                    style="
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 32px;
+                        flex-wrap: wrap;
+                        font-size: 13px;
+                        color: var(--muted);
+                        font-family: var(--font-mono);
+                    "
+                >
+                    <span>✦ Unofficial extension</span>
+                    <span>✦ No chat content stored</span>
+                    <span>✦ Open source</span>
+                    <span>✦ Works in Chrome &amp; Edge</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ FEATURES ═══ -->
+        <section id="features">
+            <div class="container">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">
+                    Everything your Claude sidebar is missing
+                </h2>
+                <p class="section-sub">
+                    The free tier covers most power users. Pro adds cross-device
+                    sync and the full history import.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📁</div>
+                        <div class="feature-title">Folders</div>
+                        <div class="feature-desc">
+                            Create color-coded folders and drag conversations
+                            into them. Finally, structure for your work
+                            projects, personal chats, and research threads.
+                        </div>
+                        <span class="feature-badge badge-free"
+                            >Free — 5 folders</span
+                        >
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏷</div>
+                        <div class="feature-title">Tags</div>
+                        <div class="feature-desc">
+                            Apply multiple tags to any conversation. Filter by
+                            tag in the sidebar instantly. Use auto-tagging rules
+                            to tag new conversations by keyword.
+                        </div>
+                        <span class="feature-badge badge-free"
+                            >Free — 20 tags</span
+                        >
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⌨</div>
+                        <div class="feature-title">Prompt Library</div>
+                        <div class="feature-desc">
+                            Save your best prompts with a title and category.
+                            One click inserts them directly into Claude's input.
+                            Template variables let you fill in details before
+                            sending.
+                        </div>
+                        <span class="feature-badge badge-free"
+                            >Free — unlimited</span
+                        >
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">★</div>
+                        <div class="feature-title">Star &amp; Search</div>
+                        <div class="feature-desc">
+                            Star conversations for fast access. Search by title
+                            across all your chats. Filter by folder, tag,
+                            starred, or unorganized in the left nav.
+                        </div>
+                        <span class="feature-badge badge-free">Free</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-title">Usage Stats</div>
+                        <div class="feature-desc">
+                            A 14-day activity sparkline, top folders and tags by
+                            conversation count, most-used prompts, and total
+                            counts. Know how you actually use Claude.
+                        </div>
+                        <span class="feature-badge badge-free">Free</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⬇</div>
+                        <div class="feature-title">Export to Markdown</div>
+                        <div class="feature-desc">
+                            Export any conversation as a clean Markdown file
+                            with your folder and tag metadata attached. Great
+                            for notes apps, git repos, or documentation.
+                        </div>
+                        <span class="feature-badge badge-free">Free</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <div class="feature-title">Cross-device Sync</div>
+                        <div class="feature-desc">
+                            Sign in with Google and your folders, tags, notes,
+                            and settings sync across every device where you have
+                            the extension installed.
+                        </div>
+                        <span class="feature-badge badge-pro">Pro</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📥</div>
+                        <div class="feature-title">Full History Sync</div>
+                        <div class="feature-desc">
+                            Import all your past Claude conversations at once
+                            using an opt-in sync that reads directly from
+                            claude.ai. Organise years of history in minutes.
+                        </div>
+                        <span class="feature-badge badge-pro">Pro</span>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Sidebar Mode</div>
+                        <div class="feature-desc">
+                            Switch to sidebar mode and the panel stays open
+                            while you browse Claude. Your organisation is always
+                            one glance away — no popup needed.
+                        </div>
+                        <span class="feature-badge badge-free">Free</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ HOW IT WORKS ═══ -->
+        <section
+            id="how-it-works"
+            style="
+                background: var(--surface2);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            "
+        >
+            <div class="container">
+                <div class="section-label">How it works</div>
+                <h2 class="section-title">Up and running in 60 seconds</h2>
+                <p class="section-sub">
+                    No account required for the free tier. No API keys. No
+                    configuration. Just install and start organising.
+                </p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num-wrap">
+                            <div class="step-num">1</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-title">
+                                Install from the Chrome Web Store
+                            </div>
+                            <div class="step-desc">
+                                Click "Add to Chrome" and confirm. Works in
+                                Chrome 114+ and any Chromium-based browser
+                                including Edge and Brave.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num-wrap">
+                            <div class="step-num">2</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-title">
+                                Open claude.ai as normal
+                            </div>
+                            <div class="step-desc">
+                                The extension automatically syncs your sidebar
+                                conversations as you browse. No manual import
+                                needed — it reads what's already on screen.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num-wrap">
+                            <div class="step-num">3</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-title">
+                                Click the toolbar icon to open the popup
+                            </div>
+                            <div class="step-desc">
+                                Press <span class="inline-code">⌘⇧Y</span> or
+                                the extension icon to open the manager. Create
+                                folders, assign tags, and search your
+                                conversations.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num-wrap">
+                            <div class="step-num">4</div>
+                            <div class="step-line"></div>
+                        </div>
+                        <div class="step-body">
+                            <div class="step-title">
+                                Hover any chat in Claude's sidebar to organise
+                                it
+                            </div>
+                            <div class="step-desc">
+                                A small ⋮ button appears on hover. Click it to
+                                star, move to a folder, or add tags directly
+                                from claude.ai — no need to open the popup.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PRICING ═══ -->
+        <section id="pricing">
+            <div class="container">
+                <div class="section-label">Pricing</div>
+                <h2 class="section-title">
+                    Free for most people. Pro for power users.
+                </h2>
+                <p class="section-sub">
+                    The free tier is genuinely unlimited on the things that
+                    matter most. Pro adds cloud sync and history import.
+                </p>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-plan">Free</div>
+                        <div class="pricing-price"><sup>$</sup>0</div>
+                        <div class="pricing-period">forever</div>
+                        <hr class="pricing-divider" />
+                        <ul class="pricing-features">
+                            <li>Up to 5 folders</li>
+                            <li>Up to 20 tags</li>
+                            <li>Unlimited saved prompts</li>
+                            <li>Prompt template variables</li>
+                            <li>Star &amp; search conversations</li>
+                            <li>Export to Markdown</li>
+                            <li>Usage stats &amp; sparkline</li>
+                            <li>Sidebar mode</li>
+                            <li class="dim">Cross-device sync</li>
+                            <li class="dim">Full history import</li>
+                            <li class="dim">Unlimited folders &amp; tags</li>
+                        </ul>
+                        <a
+                            class="pricing-btn ghost"
+                            href="https://chrome.google.com/webstore"
+                            target="_blank"
+                            rel="noopener"
+                            >Install Free</a
+                        >
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="pricing-featured-badge">Most popular</div>
+                        <div class="pricing-plan">Pro</div>
+                        <div class="pricing-price">
+                            <sup>$</sup>4<span style="font-size: 20px"
+                                >.99</span
+                            >
+                        </div>
+                        <div class="pricing-period">
+                            per month · or $49/year (save 18%)
+                        </div>
+                        <hr class="pricing-divider" />
+                        <ul class="pricing-features">
+                            <li>Everything in Free</li>
+                            <li><strong>Unlimited</strong> folders</li>
+                            <li><strong>Unlimited</strong> tags</li>
+                            <li>
+                                <strong>Cross-device sync</strong> via Google
+                                sign-in
+                            </li>
+                            <li>
+                                <strong>Full history import</strong> (all past
+                                chats)
+                            </li>
+                            <li>Auto-tagging rules by keyword</li>
+                            <li>Priority email support</li>
+                        </ul>
+                        <a
+                            class="pricing-btn primary"
+                            href="https://chrome.google.com/webstore"
+                            target="_blank"
+                            rel="noopener"
+                            >Get Pro — $4.99/mo</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ═══ -->
+        <section
+            id="faq"
+            style="
+                background: var(--surface2);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            "
+        >
+            <div class="container">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Common questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            Is this an official Anthropic product?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            No. This is an unofficial, independent Chrome
+                            extension. It is not affiliated with, endorsed by,
+                            or supported by Anthropic. "Claude" is a trademark
+                            of Anthropic, PBC.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            Does this store my conversations?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            No. The extension only stores metadata — folder
+                            assignments, tag names, your notes, and prompt
+                            titles and text. The actual content of your Claude
+                            conversations never leaves your browser and is never
+                            sent to our servers. See the
+                            <a href="privacy.html">Privacy Policy</a> for full
+                            details.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            How does the prompt library insert text into Claude?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            The extension uses a content script to simulate a
+                            paste event into Claude's input field. It uses the
+                            same DOM APIs that keyboard shortcuts use — no
+                            automation or browser-level injection. Claude's
+                            React app receives the text naturally and processes
+                            it the same way as if you typed it.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            What is "Full History Sync" and is it safe?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            Full History Sync is an opt-in feature that fetches
+                            all your past conversations from claude.ai using the
+                            same internal API your browser uses when you're
+                            logged in. It requires you to have Claude open in a
+                            tab so the request is authenticated with your
+                            existing session. It only reads conversation titles
+                            and IDs — not message content. Note: this feature
+                            uses an undocumented API that could change if
+                            Anthropic updates their infrastructure.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            Does it work with Claude Teams or Enterprise?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            It should work with any claude.ai account type,
+                            including Teams and Enterprise plans, since it
+                            operates on the same claude.ai interface. However,
+                            it has been primarily tested on personal accounts.
+                            Enterprise accounts with custom domains or SSO may
+                            have limited compatibility.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            Can I cancel Pro at any time?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            Yes. You can cancel your Pro subscription at any
+                            time from the extension's Settings → Plan & Pricing
+                            → Manage subscription. You keep Pro access until the
+                            end of your billing period. Your data (folders,
+                            tags, prompts) is always yours regardless of plan.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            Does it work in Firefox or Safari?
+                            <span class="faq-arrow">▼</span>
+                        </div>
+                        <div class="faq-a">
+                            Currently Chrome and Chromium-based browsers only
+                            (Chrome 114+, Edge, Brave, Arc). Firefox uses a
+                            different extensions API and Safari has additional
+                            restrictions. Support for other browsers may be
+                            added in future versions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA ═══ -->
+        <section>
+            <div class="container">
+                <div class="cta-section">
+                    <h2 class="cta-title">
+                        Your Claude sidebar, finally organised
+                    </h2>
+                    <p class="cta-sub">
+                        Free to install. No account required to start. Works the
+                        moment you open claude.ai.
+                    </p>
+                    <a
+                        class="btn btn-primary"
+                        href="https://chrome.google.com/webstore"
+                        target="_blank"
+                        rel="noopener"
+                        style="display: inline-flex"
+                    >
+                        Add to Chrome — It's Free
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-top">
+                    <a class="footer-brand" href="/">
+                        <div
+                            class="nav-brand-icon"
+                            style="width: 24px; height: 24px"
+                        >
+                            <svg
+                                viewBox="0 0 28 28"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <rect
+                                    width="28"
+                                    height="28"
+                                    rx="7"
+                                    fill="var(--surface2)"
+                                />
+                                <path
+                                    d="M14 4L15.8 10.2L22 10L17.2 13.8L19 20L14 16.5L9 20L10.8 13.8L6 10L12.2 10.2Z"
+                                    fill="#d97757"
+                                />
+                            </svg>
+                        </div>
+                        Conversation Manager for Claude
+                    </a>
+                    <div class="footer-links">
+                        <a class="footer-link" href="#features">Features</a>
+                        <a class="footer-link" href="#pricing">Pricing</a>
+                        <a class="footer-link" href="privacy.html"
+                            >Privacy Policy</a
+                        >
+                        <a class="footer-link" href="terms.html"
+                            >Terms of Service</a
+                        >
+                        <a
+                            class="footer-link"
+                            href="mailto:support@conversationmanager.app"
+                            >Support</a
+                        >
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-disclaimer">
+                        This extension is not affiliated with, endorsed by, or
+                        supported by Anthropic, PBC. "Claude" is a trademark of
+                        Anthropic. This is an independent, unofficial project.
+                    </div>
+                    <span
+                        >© 2025 Conversation Manager. All rights reserved.</span
+                    >
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // ─── THEME TOGGLE ───────────────────────────────
+            const themes = ["auto", "light", "dark"];
+            const icons = { auto: "🌙", light: "☀️", dark: "🌙" };
+            let themeIdx = 0;
+
+            const html = document.documentElement;
+            const toggleBtn = document.getElementById("theme-toggle");
+
+            function loadTheme() {
+                const saved = localStorage.getItem("ccm-site-theme") || "auto";
+                themeIdx = themes.indexOf(saved);
+                if (themeIdx < 0) themeIdx = 0;
+                applyTheme();
+            }
+            function applyTheme() {
+                const t = themes[themeIdx];
+                html.setAttribute("data-theme", t);
+                if (toggleBtn) toggleBtn.textContent = icons[t];
+                localStorage.setItem("ccm-site-theme", t);
+            }
+            toggleBtn?.addEventListener("click", () => {
+                themeIdx = (themeIdx + 1) % themes.length;
+                applyTheme();
+            });
+            loadTheme();
+
+            // ─── FAQ ACCORDION ──────────────────────────────
+            document.querySelectorAll(".faq-q").forEach((q) => {
+                q.addEventListener("click", () => {
+                    const item = q.parentElement;
+                    const wasOpen = item.classList.contains("open");
+                    document
+                        .querySelectorAll(".faq-item.open")
+                        .forEach((el) => el.classList.remove("open"));
+                    if (!wasOpen) item.classList.add("open");
+                });
+            });
+        </script>
+    </body>
+</html>
