@@ -3,9 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>
-            Chat Manager for Claude — Folders, Tags & Prompt Library
-        </title>
+        <title>Chat Manager for Claude — Folders, Tags & Prompt Library</title>
         <meta
             name="description"
             content="Organize your Claude conversations with folders, tags, starred chats, a saved prompt library, and usage stats. A free Chrome extension for claude.ai power users."
@@ -35,22 +33,12 @@
             <div class="nav-inner">
                 <a class="nav-brand" href="/">
                     <div class="nav-brand-icon">
-                        <svg
-                            viewBox="0 0 28 28"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect
-                                width="28"
-                                height="28"
-                                rx="7"
-                                fill="var(--surface2)"
-                            />
-                            <path
-                                d="M14 4L15.8 10.2L22 10L17.2 13.8L19 20L14 16.5L9 20L10.8 13.8L6 10L12.2 10.2Z"
-                                fill="#d97757"
-                            />
-                        </svg>
+                        <img
+                            src="icon128.png"
+                            alt="Chat Manager logo"
+                            width="28px"
+                            height="28px"
+                        />
                     </div>
                     <span class="nav-brand-name">Chat Manager</span>
                 </a>
@@ -88,9 +76,9 @@
                     Claude deserves a<br /><em>better sidebar</em>
                 </h1>
                 <p class="hero-sub">
-                    Chat Manager adds folders, tags, a saved prompt
-                    library, usage stats, and export to claude.ai — without
-                    touching a single line of Claude's code.
+                    Chat Manager adds folders, tags, a saved prompt library,
+                    usage stats, and export to claude.ai — without touching a
+                    single line of Claude's code.
                 </p>
                 <div class="hero-actions">
                     <a
@@ -125,18 +113,154 @@
                         <span class="browser-dot"></span>
                         <span class="browser-url">claude.ai/chat</span>
                     </div>
-                    <div class="browser-content" style="padding: 0">
-                        <img
-                            class="browser-screenshot"
-                            src="hero-image.png"
-                            alt="Chat Manager extension showing folders, tags and search"
-                            style="
-                                width: 100%;
-                                height: 100%;
-                                object-fit: cover;
-                                display: block;
-                            "
-                        />
+                    <div
+                        class="browser-content"
+                        style="padding: 0; position: relative"
+                    >
+                        <!-- ═══ HERO CAROUSEL ═══ -->
+                        <div class="hero-carousel" id="heroCarousel">
+                            <div class="carousel-track">
+                                <div class="carousel-slide active">
+                                    <img
+                                        class="browser-screenshot"
+                                        src="chats-into-folders.png"
+                                        alt="Chat Manager — Folders and sidebar view"
+                                    />
+                                    <div class="slide-caption">
+                                        <span class="slide-caption-icon"
+                                            >📁</span
+                                        >
+                                        <span>Organize chats into folders</span>
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img
+                                        class="browser-screenshot"
+                                        src="tag-filter.png"
+                                        alt="Chat Manager — Tags and search view"
+                                    />
+                                    <div class="slide-caption">
+                                        <span class="slide-caption-icon"
+                                            >🏷️</span
+                                        >
+                                        <span>Tag &amp; filter with ease</span>
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img
+                                        class="browser-screenshot"
+                                        src="prompt-modal.png"
+                                        alt="Chat Manager — Prompt library view"
+                                    />
+                                    <div class="slide-caption">
+                                        <span class="slide-caption-icon"
+                                            >⚡</span
+                                        >
+                                        <span
+                                            >Save &amp; reuse your best
+                                            prompts</span
+                                        >
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img
+                                        class="browser-screenshot"
+                                        src="stats.png"
+                                        alt="Chat Manager — Usage stats view"
+                                    />
+                                    <div class="slide-caption">
+                                        <span class="slide-caption-icon"
+                                            >📊</span
+                                        >
+                                        <span>Track your usage stats</span>
+                                    </div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img
+                                        class="browser-screenshot"
+                                        src="pup-decision.png"
+                                        alt="Chat Manager — Sidebar and popup view"
+                                    />
+                                    <div class="slide-caption">
+                                        <span class="slide-caption-icon"
+                                            >🪟</span
+                                        >
+                                        <span
+                                            >Use as a sidebar or popup — your
+                                            choice</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Prev / Next arrows -->
+                            <button
+                                class="carousel-btn carousel-btn-prev"
+                                aria-label="Previous slide"
+                            >
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="11 4 6 9 11 14" />
+                                </svg>
+                            </button>
+                            <button
+                                class="carousel-btn carousel-btn-next"
+                                aria-label="Next slide"
+                            >
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 18 18"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <polyline points="7 4 12 9 7 14" />
+                                </svg>
+                            </button>
+
+                            <!-- Dot indicators -->
+                            <div class="carousel-dots">
+                                <button
+                                    class="carousel-dot active"
+                                    aria-label="Slide 1"
+                                ></button>
+                                <button
+                                    class="carousel-dot"
+                                    aria-label="Slide 2"
+                                ></button>
+                                <button
+                                    class="carousel-dot"
+                                    aria-label="Slide 3"
+                                ></button>
+                                <button
+                                    class="carousel-dot"
+                                    aria-label="Slide 4"
+                                ></button>
+                                <button
+                                    class="carousel-dot"
+                                    aria-label="Slide 5"
+                                ></button>
+                            </div>
+
+                            <!-- Progress bar -->
+                            <div class="carousel-progress">
+                                <div
+                                    class="carousel-progress-bar"
+                                    id="carouselProgressBar"
+                                ></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,7 +290,6 @@
                 >
                     <span>✦ Unofficial extension</span>
                     <span>✦ No chat content stored</span>
-                    <span>✦ Open source</span>
                     <span>✦ Works in Chrome &amp; Edge</span>
                 </div>
             </div>
@@ -612,26 +735,13 @@
             <div class="footer-inner">
                 <div class="footer-top">
                     <a class="footer-brand" href="/">
-                        <div
-                            class="nav-brand-icon"
-                            style="width: 24px; height: 24px"
-                        >
-                            <svg
-                                viewBox="0 0 28 28"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect
-                                    width="28"
-                                    height="28"
-                                    rx="7"
-                                    fill="var(--surface2)"
-                                />
-                                <path
-                                    d="M14 4L15.8 10.2L22 10L17.2 13.8L19 20L14 16.5L9 20L10.8 13.8L6 10L12.2 10.2Z"
-                                    fill="#d97757"
-                                />
-                            </svg>
+                        <div class="nav-brand-icon">
+                            <img
+                                src="icon128.png"
+                                alt="Chat Manager logo"
+                                width="28px"
+                                height="28px"
+                            />
                         </div>
                         Chat Manager for Claude
                     </a>
@@ -646,7 +756,7 @@
                         >
                         <a
                             class="footer-link"
-                            href="mailto:techosiris69@gmail.com"
+                            href="/cdn-cgi/l/email-protection#9aeefff9f2f5e9f3e8f3e9aca3dafdf7fbf3f6b4f9f5f7"
                             >Support</a
                         >
                     </div>
@@ -657,13 +767,15 @@
                         supported by Anthropic, PBC. "Claude" is a trademark of
                         Anthropic. This is an independent, unofficial project.
                     </div>
-                    <span
-                        >© 2026 Chat Manager. All rights reserved.</span
-                    >
+                    <span>© 2026 Chat Manager. All rights reserved.</span>
                 </div>
             </div>
         </footer>
 
+        <script
+            data-cfasync="false"
+            src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+        ></script>
         <script>
             // ─── THEME TOGGLE ───────────────────────────────
             const themes = ["auto", "light", "dark"];
@@ -690,6 +802,112 @@
                 applyTheme();
             });
             loadTheme();
+
+            // ─── HERO CAROUSEL ──────────────────────────────
+            (function () {
+                const carousel = document.getElementById("heroCarousel");
+                if (!carousel) return;
+
+                const slides = carousel.querySelectorAll(".carousel-slide");
+                const dots = carousel.querySelectorAll(".carousel-dot");
+                const progressBar = document.getElementById(
+                    "carouselProgressBar",
+                );
+                const prevBtn = carousel.querySelector(".carousel-btn-prev");
+                const nextBtn = carousel.querySelector(".carousel-btn-next");
+
+                let current = 0;
+                let autoplayTimer = null;
+                let progressTimer = null;
+                const INTERVAL = 4000;
+
+                function goTo(index) {
+                    slides[current].classList.remove("active");
+                    dots[current].classList.remove("active");
+                    current = (index + slides.length) % slides.length;
+                    slides[current].classList.add("active");
+                    dots[current].classList.add("active");
+                    restartProgress();
+                }
+
+                function next() {
+                    goTo(current + 1);
+                }
+                function prev() {
+                    goTo(current - 1);
+                }
+
+                function restartProgress() {
+                    if (progressBar) {
+                        progressBar.style.transition = "none";
+                        progressBar.style.width = "0%";
+                        requestAnimationFrame(() =>
+                            requestAnimationFrame(() => {
+                                progressBar.style.transition = `width ${INTERVAL}ms linear`;
+                                progressBar.style.width = "100%";
+                            }),
+                        );
+                    }
+                }
+
+                function startAutoplay() {
+                    stopAutoplay();
+                    autoplayTimer = setInterval(next, INTERVAL);
+                    restartProgress();
+                }
+
+                function stopAutoplay() {
+                    clearInterval(autoplayTimer);
+                    if (progressBar) {
+                        const computed = getComputedStyle(progressBar).width;
+                        progressBar.style.transition = "none";
+                        progressBar.style.width = computed;
+                    }
+                }
+
+                prevBtn?.addEventListener("click", () => {
+                    stopAutoplay();
+                    prev();
+                    startAutoplay();
+                });
+                nextBtn?.addEventListener("click", () => {
+                    stopAutoplay();
+                    next();
+                    startAutoplay();
+                });
+                dots.forEach((dot, i) =>
+                    dot.addEventListener("click", () => {
+                        stopAutoplay();
+                        goTo(i);
+                        startAutoplay();
+                    }),
+                );
+
+                carousel.addEventListener("mouseenter", stopAutoplay);
+                carousel.addEventListener("mouseleave", startAutoplay);
+
+                // Touch / swipe
+                let touchStartX = 0;
+                carousel.addEventListener(
+                    "touchstart",
+                    (e) => {
+                        touchStartX = e.touches[0].clientX;
+                    },
+                    { passive: true },
+                );
+                carousel.addEventListener(
+                    "touchend",
+                    (e) => {
+                        const diff = touchStartX - e.changedTouches[0].clientX;
+                        if (Math.abs(diff) > 40) {
+                            diff > 0 ? next() : prev();
+                        }
+                    },
+                    { passive: true },
+                );
+
+                startAutoplay();
+            })();
 
             // ─── FAQ ACCORDION ──────────────────────────────
             document.querySelectorAll(".faq-q").forEach((q) => {
