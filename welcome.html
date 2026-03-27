@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welcome to Chat Manager for Claude</title>
+        <meta name="description"
+            content="You've installed Chat Manager for Claude. Here's how to get started in 60 seconds." />
+        <meta name="robots" content="noindex, nofollow" />
+
+        <!-- Fonts (identical to main site) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet" />
+
+        <!-- Site design system -->
+        <link rel="stylesheet" href="style.css" />
+
+        <style>
+            /* ══════════════════════════════════════
+               WELCOME PAGE — EXTRA STYLES
+               Everything else inherits from style.css
+            ══════════════════════════════════════ */
+
+            /* Canvas sits behind everything */
+            #confetti-canvas {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 9999;
+            }
+
+            /* ── INSTALLED BADGE ── */
+            .installed-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 16px 6px 8px;
+                background: rgba(90, 139, 90, 0.12);
+                border: 1px solid rgba(90, 139, 90, 0.3);
+                border-radius: 100px;
+                font-size: 12px;
+                font-weight: 600;
+                color: var(--green);
+                font-family: var(--font-mono);
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                margin-bottom: 28px;
+                animation: badgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+            }
+
+            .installed-badge-dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--green);
+                box-shadow: 0 0 0 0 rgba(90, 139, 90, 0.5);
+                animation: pulse 2s ease-in-out 1s infinite;
+            }
+
+            @keyframes badgePop {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8) translateY(4px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            @keyframes pulse {
+
+                0%,
+                100% {
+                    box-shadow: 0 0 0 0 rgba(90, 139, 90, 0.5);
+                }
+
+                50% {
+                    box-shadow: 0 0 0 6px rgba(90, 139, 90, 0);
+                }
+            }
+
+            /* ── WELCOME HERO ── */
+            .welcome-hero {
+                padding: 72px 0 56px;
+                text-align: center;
+            }
+
+            .welcome-title {
+                font-size: clamp(34px, 5vw, 58px);
+                font-weight: 800;
+                line-height: 1.08;
+                letter-spacing: -0.025em;
+                color: var(--text);
+                margin-bottom: 20px;
+                animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
+            }
+
+            .welcome-title em {
+                font-style: normal;
+                color: var(--accent);
+            }
+
+            .welcome-sub {
+                font-size: clamp(16px, 2.5vw, 19px);
+                color: var(--text2);
+                font-family: var(--font-body);
+                line-height: 1.65;
+                max-width: 520px;
+                margin: 0 auto 40px;
+                animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+            }
+
+            .welcome-actions {
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 64px;
+                animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.35s both;
+            }
+
+            /* ── QUICK START ── */
+            .quickstart-section {
+                padding: 64px 0;
+                background: var(--bg2);
+                border-top: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+            }
+
+            .quickstart-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 2px;
+                margin-top: 40px;
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                overflow: hidden;
+                background: var(--border);
+            }
+
+            .qs-step {
+                background: var(--surface);
+                padding: 28px 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                opacity: 0;
+                transform: translateY(12px);
+                transition:
+                    border-color 0.15s,
+                    box-shadow 0.15s;
+            }
+
+            .qs-step.visible {
+                animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+            }
+
+            .qs-step:hover {
+                background: var(--surface);
+                box-shadow: inset 0 0 0 1px rgba(217, 119, 87, 0.25);
+            }
+
+            .qs-num {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: rgba(217, 119, 87, 0.1);
+                border: 1.5px solid rgba(217, 119, 87, 0.25);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-mono);
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--accent);
+                flex-shrink: 0;
+            }
+
+            .qs-title {
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--text);
+                line-height: 1.3;
+            }
+
+            .qs-desc {
+                font-size: 13.5px;
+                color: var(--text2);
+                font-family: var(--font-body);
+                line-height: 1.6;
+                flex: 1;
+            }
+
+            .qs-hint {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                font-family: var(--font-mono);
+                font-size: 10px;
+                color: var(--muted);
+                padding: 3px 8px;
+                background: var(--surface2);
+                border-radius: 4px;
+                border: 1px solid var(--border);
+                width: fit-content;
+            }
+
+            /* ── FIRST THINGS TO TRY ── */
+            .try-section {
+                padding: 80px 0;
+            }
+
+            .try-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 16px;
+                margin-top: 40px;
+            }
+
+            /* Inherits .feature-card from style.css */
+            .try-card {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 24px;
+                transition:
+                    border-color 0.15s,
+                    box-shadow 0.15s,
+                    transform 0.15s;
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            .try-card.visible {
+                animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+            }
+
+            .try-card:hover {
+                border-color: rgba(217, 119, 87, 0.4);
+                box-shadow: var(--shadow);
+                transform: translateY(-2px);
+            }
+
+            .try-card-icon {
+                width: 44px;
+                height: 44px;
+                background: rgba(217, 119, 87, 0.1);
+                border-radius: 11px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 21px;
+                margin-bottom: 14px;
+            }
+
+            .try-card-title {
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--text);
+                margin-bottom: 7px;
+            }
+
+            .try-card-desc {
+                font-size: 13.5px;
+                color: var(--text2);
+                line-height: 1.6;
+                font-family: var(--font-body);
+                margin-bottom: 14px;
+            }
+
+            .try-card-tip {
+                font-size: 12px;
+                font-family: var(--font-mono);
+                color: var(--accent);
+                display: flex;
+                align-items: flex-start;
+                gap: 6px;
+                line-height: 1.5;
+            }
+
+            .try-card-tip::before {
+                content: "→";
+                flex-shrink: 0;
+                margin-top: 1px;
+            }
+
+            /* ── PRO CALLOUT ── */
+            .pro-callout {
+                margin: 0 0 80px;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 40px;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 32px;
+                align-items: center;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .pro-callout::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(135deg,
+                        rgba(217, 119, 87, 0.06) 0%,
+                        transparent 60%);
+                pointer-events: none;
+            }
+
+            .pro-callout-left {}
+
+            .pro-callout-label {
+                font-family: var(--font-mono);
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: var(--accent);
+                margin-bottom: 10px;
+            }
+
+            .pro-callout-title {
+                font-size: 22px;
+                font-weight: 800;
+                color: var(--text);
+                letter-spacing: -0.02em;
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+
+            .pro-callout-desc {
+                font-size: 14px;
+                color: var(--text2);
+                font-family: var(--font-body);
+                line-height: 1.65;
+                max-width: 480px;
+            }
+
+            .pro-feature-list {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px 20px;
+                margin-top: 14px;
+            }
+
+            .pro-feature-list li {
+                font-size: 13px;
+                color: var(--text2);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-family: var(--font-ui);
+            }
+
+            .pro-feature-list li::before {
+                content: "✦";
+                color: var(--accent);
+                font-size: 9px;
+            }
+
+            .pro-callout-right {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                text-align: center;
+                flex-shrink: 0;
+            }
+
+            .pro-price {
+                font-size: 13px;
+                color: var(--muted);
+                font-family: var(--font-mono);
+            }
+
+            /* ── REASSURANCE ROW ── */
+            .reassurance {
+                display: flex;
+                gap: 32px;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 40px 0 72px;
+                border-top: 1px solid var(--border);
+            }
+
+            .reassurance-item {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                font-size: 13px;
+                color: var(--text2);
+                font-family: var(--font-ui);
+            }
+
+            .reassurance-icon {
+                font-size: 16px;
+                opacity: 0.75;
+            }
+
+            /* ── ANIMATIONS ── */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(14px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* ── RESPONSIVE ── */
+            @media (max-width: 680px) {
+                .pro-callout {
+                    grid-template-columns: 1fr;
+                }
+
+                .pro-callout-right {
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    text-align: left;
+                }
+
+                .reassurance {
+                    gap: 20px;
+                    justify-content: flex-start;
+                }
+
+                .qs-step {
+                    flex-direction: row;
+                    align-items: flex-start;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .welcome-hero {
+                    padding: 48px 0 40px;
+                }
+
+                .quickstart-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .try-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .pro-callout {
+                    padding: 28px 20px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Confetti canvas — behind everything -->
+        <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+        <!-- ═══ NAV (exact match to site) ═══ -->
+        <nav class="site-nav">
+            <div class="nav-inner">
+                <a class="nav-brand" href="index.html">
+                    <div class="nav-brand-icon">
+                        <img src="logo.png" alt="Chat Manager logo" width="28" height="28" />
+                    </div>
+                    <span class="nav-brand-name">Chat Manager</span>
+                </a>
+                <div class="nav-links">
+                    <a class="nav-link" href="index.html#features">Features</a>
+                    <a class="nav-link" href="index.html#pricing">Pricing</a>
+                    <a class="nav-link" href="privacy.html">Privacy</a>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center">
+                    <a class="nav-cta" href="https://claude.ai" target="_blank" rel="noopener">Open Claude →</a>
+                    <!-- <button
+                        class="theme-toggle"
+                        id="theme-toggle"
+                        aria-label="Toggle theme"
+                    >
+                        🌙
+                    </button> -->
+                    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false"
+                        aria-controls="mobileNav">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ═══ MOBILE NAV ═══ -->
+        <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+        <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+            <div class="mobile-nav-header">
+                <a class="nav-brand" href="index.html">
+                    <div class="nav-brand-icon">
+                        <img src="logo.png" alt="Chat Manager logo" width="28" height="28" />
+                    </div>
+                    <span class="nav-brand-name">Chat Manager</span>
+                </a>
+                <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="3" x2="15" y2="15" />
+                        <line x1="15" y1="3" x2="3" y2="15" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-nav-links">
+                <a class="mobile-nav-link" href="index.html#features"><span class="mobile-nav-link-icon">✦</span>
+                    Features</a>
+                <a class="mobile-nav-link" href="index.html#pricing"><span class="mobile-nav-link-icon">✦</span>
+                    Pricing</a>
+                <a class="mobile-nav-link" href="privacy.html"><span class="mobile-nav-link-icon">✦</span> Privacy</a>
+            </div>
+            <div class="mobile-nav-footer">
+                <a class="btn btn-primary" href="https://claude.ai" target="_blank" rel="noopener"
+                    style="justify-content: center">Open Claude →</a>
+                <p class="mobile-nav-disclaimer">
+                    Chat Manager is unofficial &amp; independent.<br />Not
+                    affiliated with Anthropic.
+                </p>
+            </div>
+        </nav>
+
+        <!-- ═══ WELCOME HERO ═══ -->
+        <section class="welcome-hero">
+            <div class="container">
+                <div class="installed-badge">
+                    <span class="installed-badge-dot"></span>
+                    Extension installed
+                </div>
+
+                <h1 class="welcome-title">
+                    Claude just got<br /><em>a whole lot better.</em>
+                </h1>
+
+                <p class="welcome-sub">
+                    You've got folders, tags, a prompt library, cloud sync, and
+                    everything else Claude was missing. Here's how to make it
+                    yours in the next 60 seconds.
+                </p>
+
+                <div class="welcome-actions">
+                    <a class="btn btn-primary" href="https://claude.ai" target="_blank" rel="noopener">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                            stroke-width="1.8">
+                            <path d="M3 8h10M9 4l4 4-4 4" />
+                        </svg>
+                        Go to Claude &amp; try it
+                    </a>
+                    <a class="btn btn-secondary" href="#quick-start">
+                        See the 3-step guide ↓
+                    </a>
+                </div>
+
+                <!-- Reassurance strip under the buttons -->
+                <div class="reassurance">
+                    <div class="reassurance-item">
+                        <span class="reassurance-icon">🔒</span>
+                        Your conversation content never leaves your browser
+                    </div>
+                    <div class="reassurance-item">
+                        <span class="reassurance-icon">⚡</span>
+                        Works instantly — no setup, no account needed
+                    </div>
+                    <div class="reassurance-item">
+                        <span class="reassurance-icon">✦</span>
+                        Prompt Library is unlimited on the free tier
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ QUICK START ═══ -->
+        <section class="quickstart-section" id="quick-start">
+            <div class="container">
+                <div class="section-label">Quick start</div>
+                <h2 class="section-title">
+                    Up and running<br />in three steps
+                </h2>
+                <p class="section-sub" style="margin-bottom: 0">
+                    You don't need to configure anything. These three steps will
+                    get you using the extension properly from the first session.
+                </p>
+
+                <div class="quickstart-grid">
+                    <div class="qs-step">
+                        <div class="qs-num">01</div>
+                        <div>
+                            <div class="qs-title">
+                                Pin the extension to your toolbar
+                            </div>
+                            <p class="qs-desc">
+                                Click the puzzle-piece icon in your Chrome
+                                toolbar, find Chat Manager, and click the pin
+                                icon. It will appear next to your address bar
+                                permanently.
+                            </p>
+                            <span class="qs-hint">Chrome toolbar → Extensions → Pin</span>
+                        </div>
+                    </div>
+
+                    <div class="qs-step">
+                        <div class="qs-num">02</div>
+                        <div>
+                            <div class="qs-title">
+                                Open Claude and scroll your chat list
+                            </div>
+                            <p class="qs-desc">
+                                Visit claude.ai and scroll through your
+                                conversation history. Chat Manager reads the
+                                page and syncs your chats automatically — no
+                                manual import needed.
+                            </p>
+                            <span class="qs-hint">claude.ai → scroll to load your chats</span>
+                        </div>
+                    </div>
+
+                    <div class="qs-step">
+                        <div class="qs-num">03</div>
+                        <div>
+                            <div class="qs-title">
+                                Click the icon — your sidebar is ready
+                            </div>
+                            <p class="qs-desc">
+                                Click the Chat Manager icon to open it as a
+                                popup, or switch to sidebar mode in Settings for
+                                a persistent panel alongside Claude.
+                            </p>
+                            <span class="qs-hint">Settings → Display → Switch to Sidebar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FIRST THINGS TO TRY ═══ -->
+        <section class="try-section">
+            <div class="container">
+                <div class="section-label">Start here</div>
+                <h2 class="section-title">
+                    Four things to try<br />in your first session
+                </h2>
+                <p class="section-sub" style="margin-bottom: 0">
+                    These are the features that change how Claude actually feels
+                    to use. Try them in order — each one builds on the last.
+                </p>
+
+                <div class="try-grid">
+                    <div class="try-card">
+                        <div class="try-card-icon">⚡</div>
+                        <div class="try-card-title">Save your first prompt</div>
+                        <p class="try-card-desc">
+                            Open Chat Manager and go to
+                            <strong>Prompts</strong>. Add any system instruction
+                            or writing tone you use regularly. Next time you
+                            need it, one click puts it directly into Claude.
+                        </p>
+                        <div class="try-card-tip">
+                            Try saving a code review format or a writing tone
+                            you use often. You'll reach for this daily.
+                        </div>
+                        <span class="feature-badge badge-free" style="margin-top: 14px">Free · Unlimited</span>
+                    </div>
+
+                    <div class="try-card">
+                        <div class="try-card-icon">📁</div>
+                        <div class="try-card-title">
+                            Create your first folder
+                        </div>
+                        <p class="try-card-desc">
+                            Click the <strong>+</strong> next to Folders in the
+                            sidebar. Name it after a project, a client, or a
+                            topic. Drag any conversation into it — or
+                            right-click a chat to assign it.
+                        </p>
+                        <div class="try-card-tip">
+                            Start with 2–3 folders that map to your actual work.
+                            You can always rename them.
+                        </div>
+                        <span class="feature-badge badge-free" style="margin-top: 14px">Free · Up to 5 folders</span>
+                    </div>
+
+                    <div class="try-card">
+                        <div class="try-card-icon">🏷️</div>
+                        <div class="try-card-title">Tag a conversation</div>
+                        <p class="try-card-desc">
+                            Click the <strong>⋯</strong> on any conversation in
+                            your list to open its options. Assign a tag —
+                            conversations can have multiple tags and you can
+                            filter by any combination.
+                        </p>
+                        <div class="try-card-tip">
+                            Tags work across folders. "research", "to-review",
+                            "important" — whatever your system is.
+                        </div>
+                        <span class="feature-badge badge-free" style="margin-top: 14px">Free · Up to 20 tags</span>
+                    </div>
+
+                    <div class="try-card">
+                        <div class="try-card-icon">🔄</div>
+                        <div class="try-card-title">Turn on cloud sync</div>
+                        <p class="try-card-desc">
+                            Sign in with Google in Settings and your entire
+                            folder structure, tags, and saved prompts will sync
+                            across every browser you have the extension
+                            installed on.
+                        </p>
+                        <div class="try-card-tip">
+                            Your actual conversation content stays local. Only
+                            metadata and prompts are synced.
+                        </div>
+                        <span class="feature-badge badge-pro" style="margin-top: 14px">Pro feature</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PRO CALLOUT ═══ -->
+        <div class="container">
+            <div class="pro-callout">
+                <div class="pro-callout-left">
+                    <div class="pro-callout-label">✦ Pro plan</div>
+                    <h3 class="pro-callout-title">
+                        When the free tier isn't enough,<br />Pro removes every
+                        limit.
+                    </h3>
+                    <p class="pro-callout-desc">
+                        The free tier covers everything you need to get started
+                        properly. When your folders and tags grow beyond the
+                        limits, Pro unlocks unlimited everything — and adds
+                        cloud sync and auto-tagging rules for serious Claude
+                        workflows.
+                    </p>
+                    <ul class="pro-feature-list">
+                        <li>Unlimited folders &amp; tags</li>
+                        <li>Real-time cloud sync</li>
+                        <li>Auto-tagging rules</li>
+                        <li>Unlimited saved searches</li>
+                        <li>Unlimited bulk operations</li>
+                        <li>Unlimited exports</li>
+                    </ul>
+                </div>
+                <div class="pro-callout-right">
+                    <a class="btn btn-primary" href="index.html#pricing">
+                        See Pro plans
+                    </a>
+                    <span class="pro-price">From $4.99/mo · $49/yr</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer style="
+                background: var(--bg2);
+                border-top: 1px solid var(--border);
+                padding: 40px 0 32px;
+            ">
+            <div class="container">
+                <div class="footer-top">
+                    <a class="footer-brand" href="index.html">
+                        <div class="nav-brand-icon">
+                            <img src="logo.png" alt="Chat Manager logo" width="28" height="28" />
+                        </div>
+                        Chat Manager for Claude
+                    </a>
+                    <div class="footer-links">
+                        <a class="footer-link" href="index.html#features">Features</a>
+                        <a class="footer-link" href="index.html#pricing">Pricing</a>
+                        <a class="footer-link" href="privacy.html">Privacy Policy</a>
+                        <a class="footer-link" href="terms.html">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-disclaimer">
+                        This extension is not affiliated with, endorsed by, or
+                        supported by Anthropic, PBC. "Claude" is a trademark of
+                        Anthropic. This is an independent, unofficial project.
+                    </div>
+                    <span>© 2026 Chat Manager. All rights reserved.</span>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            /* ════════════════════════════════════════════
+           CONFETTI ENGINE
+           Pure canvas — no external libraries.
+           Fires on page load, runs for ~4 seconds,
+           then removes itself cleanly.
+        ════════════════════════════════════════════ */
+            (function () {
+                const canvas = document.getElementById("confetti-canvas");
+                const ctx = canvas.getContext("2d");
+
+                // Match design system accent + complementary colours
+                const COLORS = [
+                    "#d97757", // accent (rust)
+                    "#c4673f", // accent hover
+                    "#5a8bb8", // blue token
+                    "#5a8b5a", // green token
+                    "#f0ece4", // surface light
+                    "#b8942a", // warm gold
+                    "#e8c4a4", // peachy warm
+                    "#9c9990", // muted
+                ];
+
+                const PARTICLE_COUNT = 140;
+                const GRAVITY = 0.38;
+                const DRAG = 0.985;
+                let particles = [];
+                let animId;
+                let running = true;
+
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                resize();
+                window.addEventListener("resize", resize);
+
+                function randomBetween(a, b) {
+                    return a + Math.random() * (b - a);
+                }
+
+                function createParticle() {
+                    const angle = randomBetween(-Math.PI * 0.9, -Math.PI * 0.1); // upward spread
+                    const speed = randomBetween(6, 18);
+                    const shape = Math.random() < 0.5 ? "rect" : "circle";
+                    return {
+                        x: randomBetween(
+                            canvas.width * 0.25,
+                            canvas.width * 0.75,
+                        ),
+                        y: canvas.height * 0.55,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        color: COLORS[
+                            Math.floor(Math.random() * COLORS.length)
+                        ],
+                        size: randomBetween(5, 11),
+                        rotation: randomBetween(0, Math.PI * 2),
+                        rotSpeed: randomBetween(-0.18, 0.18),
+                        opacity: 1,
+                        shape,
+                        decay: randomBetween(0.012, 0.022),
+                    };
+                }
+
+                // Staggered burst — two waves for a richer effect
+                function launch() {
+                    for (let i = 0; i < PARTICLE_COUNT * 0.65; i++) {
+                        particles.push(createParticle());
+                    }
+                    setTimeout(() => {
+                        for (let i = 0; i < PARTICLE_COUNT * 0.35; i++) {
+                            particles.push(createParticle());
+                        }
+                    }, 260);
+                }
+
+                function drawParticle(p) {
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, p.opacity);
+                    ctx.fillStyle = p.color;
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+
+                    if (p.shape === "circle") {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, p.size * 0.5, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        ctx.fillRect(
+                            -p.size * 0.5,
+                            -p.size * 0.35,
+                            p.size,
+                            p.size * 0.7,
+                        );
+                    }
+                    ctx.restore();
+                }
+
+                function tick() {
+                    if (!running && particles.length === 0) {
+                        canvas.remove();
+                        return;
+                    }
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    particles = particles.filter((p) => p.opacity > 0);
+                    particles.forEach((p) => {
+                        p.vy += GRAVITY;
+                        p.vx *= DRAG;
+                        p.vy *= DRAG;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.rotation += p.rotSpeed;
+                        p.opacity -= p.decay;
+                        drawParticle(p);
+                    });
+
+                    animId = requestAnimationFrame(tick);
+                }
+
+                // Fire after a brief delay so the page paints first
+                setTimeout(() => {
+                    launch();
+                    tick();
+                    // Mark as not running after 4.5 s so cleanup happens naturally
+                    setTimeout(() => {
+                        running = false;
+                    }, 4500);
+                }, 180);
+            })();
+
+            /* ════════════════════════════════════════════
+           SCROLL-TRIGGERED ANIMATIONS
+           Staggered fadeUp for quickstart steps
+           and try-cards once they enter the viewport.
+        ════════════════════════════════════════════ */
+            (function () {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (!entry.isIntersecting) return;
+                            const el = entry.target;
+                            const delay = el.dataset.delay || "0ms";
+                            el.style.animationDelay = delay;
+                            el.classList.add("visible");
+                            observer.unobserve(el);
+                        });
+                    },
+                    { threshold: 0.15 },
+                );
+
+                // Stagger quickstart steps
+                document.querySelectorAll(".qs-step").forEach((el, i) => {
+                    el.dataset.delay = `${i * 80}ms`;
+                    observer.observe(el);
+                });
+
+                // Stagger try-cards
+                document.querySelectorAll(".try-card").forEach((el, i) => {
+                    el.dataset.delay = `${i * 70}ms`;
+                    observer.observe(el);
+                });
+            })();
+
+            /* ════════════════════════════════════════════
+           THEME TOGGLE (identical to main site)
+        ════════════════════════════════════════════ */
+            (function () {
+                const themes = ["auto", "light", "dark"];
+                const icons = { auto: "🌙", light: "☀️", dark: "🌙" };
+                let idx = 0;
+                const html = document.documentElement;
+                const btn = document.getElementById("theme-toggle");
+
+                function load() {
+                    const saved =
+                        localStorage.getItem("ccm-site-theme") || "auto";
+                    idx = themes.indexOf(saved);
+                    if (idx < 0) idx = 0;
+                    apply();
+                }
+                function apply() {
+                    html.setAttribute("data-theme", themes[idx]);
+                    if (btn) btn.textContent = icons[themes[idx]];
+                    localStorage.setItem("ccm-site-theme", themes[idx]);
+                }
+                btn?.addEventListener("click", () => {
+                    idx = (idx + 1) % themes.length;
+                    apply();
+                });
+                load();
+            })();
+
+            /* ════════════════════════════════════════════
+           MOBILE NAV (identical to main site)
+        ════════════════════════════════════════════ */
+            (function () {
+                const hamburger = document.getElementById("navHamburger");
+                const closeBtn = document.getElementById("mobileNavClose");
+                const nav = document.getElementById("mobileNav");
+                const backdrop = document.getElementById("mobileNavBackdrop");
+
+                function open() {
+                    nav.classList.add("is-open");
+                    backdrop.classList.add("is-visible");
+                    document.body.classList.add("nav-open");
+                    hamburger?.setAttribute("aria-expanded", "true");
+                    nav.setAttribute("aria-hidden", "false");
+                }
+                function close() {
+                    nav.classList.remove("is-open");
+                    backdrop.classList.remove("is-visible");
+                    document.body.classList.remove("nav-open");
+                    hamburger?.setAttribute("aria-expanded", "false");
+                    nav.setAttribute("aria-hidden", "true");
+                }
+
+                hamburger?.addEventListener("click", open);
+                closeBtn?.addEventListener("click", close);
+                backdrop?.addEventListener("click", close);
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") close();
+                });
+            })();
+        </script>
+    </body>
+
+</html>

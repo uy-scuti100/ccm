@@ -326,12 +326,7 @@
                         </li>
                     </ul>
                     <p>
-                        <strong
-                            >We never read, store, or transmit the content of
-                            your Claude conversations — messages, responses,
-                            files, or any other communication with
-                            Claude.</strong
-                        >
+                        <strong>We do not store or transmit the content of your Claude conversations.</strong> For the user-requested export feature, conversation text is read locally in your browser only to generate the Markdown file you download. Conversation content is not sent to our servers.
                     </p>
 
                     <h3>
@@ -429,6 +424,12 @@
                             sign-in for the optional cloud sync feature.
                         </li>
                         <li>
+                            <strong>alarms</strong> — Schedules lightweight
+                            background timing tasks (for example, auth flow
+                            keepalive/retry and sync-related timers) so
+                            extension operations complete reliably.
+                        </li>
+                        <li>
                             <strong>clipboardWrite</strong> — Allows copying
                             conversation links and exported markdown to your
                             clipboard when you request it.
@@ -437,6 +438,12 @@
                             <strong>sidePanel</strong> — Enables the optional
                             sidebar mode that keeps the Extension open alongside
                             claude.ai.
+                        </li>
+                        <li>
+                            <strong>scripting</strong> — Executes packaged
+                            extension scripts on claude.ai when needed to apply
+                            user actions from the popup/sidebar and keep page
+                            integration working.
                         </li>
                         <li>
                             <strong
